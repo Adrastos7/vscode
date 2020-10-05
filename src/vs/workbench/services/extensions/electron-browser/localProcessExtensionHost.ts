@@ -453,6 +453,7 @@ export class LocalProcessExtensionHost implements IExtensionHost {
 			parentPid: process.pid,
 			environment: {
 				isExtensionDevelopmentDebug: this._isExtensionDevDebug,
+				debugExpected: this._environmentService.debugExpected,
 				appRoot: this._environmentService.appRoot ? URI.file(this._environmentService.appRoot) : undefined,
 				appName: this._productService.nameLong,
 				appUriScheme: this._productService.urlProtocol,

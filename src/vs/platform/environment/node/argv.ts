@@ -83,6 +83,8 @@ export const OPTIONS: OptionDescriptions<Required<NativeParsedArgs>> = {
 	'extensionDevelopmentPath': { type: 'string[]' },
 	'extensionTestsPath': { type: 'string' },
 	'debugId': { type: 'string' },
+	'debugRenderer': { type: 'boolean' },
+	'debugExpected': { type: 'boolean' },
 	'inspect-search': { type: 'string', deprecates: 'debugSearch' },
 	'inspect-brk-search': { type: 'string', deprecates: 'debugBrkSearch' },
 	'export-default-configuration': { type: 'string' },

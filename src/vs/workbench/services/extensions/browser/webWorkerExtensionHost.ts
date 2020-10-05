@@ -286,7 +286,8 @@ export class WebWorkerExtensionHost extends Disposable implements IExtensionHost
 			version: this._productService.version,
 			parentPid: -1,
 			environment: {
-				isExtensionDevelopmentDebug: false, //todo@jrieken web
+				isExtensionDevelopmentDebug: this._environmentService.debugRenderer,
+				debugExpected: this._environmentService.debugExpected,
 				appName: this._productService.nameLong,
 				appUriScheme: this._productService.urlProtocol,
 				appLanguage: platform.language,

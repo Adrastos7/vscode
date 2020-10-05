@@ -60,6 +60,7 @@ import { IAccessibilityInformation } from 'vs/platform/accessibility/common/acce
 
 export interface IEnvironment {
 	isExtensionDevelopmentDebug: boolean;
+	debugExpected: boolean;
 	appName: string;
 	appRoot?: URI;
 	appLanguage: string;

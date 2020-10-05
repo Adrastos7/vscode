@@ -179,8 +179,10 @@ export abstract class AbstractExtHostExtensionService extends Disposable impleme
 
 	public async initialize(): Promise<void> {
 		try {
-
-			await this._beforeAlmostReadyToRunExtensions();
+			await Promise.all([
+				this._beforeAlmostReadyToRunExtensions(),
+				this._waitForDebuggerAttachment(),
+			]);
 			this._almostReadyToRunExtensions.open();
 
 			await this._extHostWorkspace.waitForInitializeCall();
@@ -302,6 +304,18 @@ export abstract class AbstractExtHostExtensionService extends Disposable impleme
 	}
 
 	// --- impl
+
+	private async _waitForDebuggerAttachment(waitTimeout = 5000) {
+		// debugger attaches async, waiting for it fixes #106698 and #99222
+		if (!this._initData.environment.isExtensionDevelopmentDebug || !this._initData.environment.debugExpected) {
+			return;
+		}
+
+		const deadline = Date.now() + waitTimeout;
+		while (Date.now() < deadline && !('__jsDebugIsReady' in globalThis)) {
+			await timeout(10);
+		}
+	}
 
 	private async _activateExtension(extensionDescription: IExtensionDescription, reason: ExtensionActivationReason): Promise<ActivatedExtension> {
 		if (!this._initData.remote.isRemote) {

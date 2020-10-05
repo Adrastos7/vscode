@@ -221,6 +221,7 @@ export class RemoteExtensionHost extends Disposable implements IExtensionHost {
 			parentPid: remoteInitData.pid,
 			environment: {
 				isExtensionDevelopmentDebug,
+				debugExpected: this._environmentService.debugExpected,
 				appRoot: remoteInitData.appRoot,
 				appName: this._productService.nameLong,
 				appUriScheme: this._productService.urlProtocol,

@@ -43,6 +43,8 @@ export interface NativeParsedArgs {
 	'inspect-extensions'?: string;
 	'inspect-brk-extensions'?: string;
 	debugId?: string;
+	debugRenderer?: boolean;
+	debugExpected?: boolean;
 	'inspect-search'?: string;
 	'inspect-brk-search'?: string;
 	'disable-extensions'?: boolean;
